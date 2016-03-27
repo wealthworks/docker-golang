@@ -9,10 +9,13 @@ RUN apk --update add \
 	ca-certificates \
 	git \
 	go \
+	go-tools \
 	make \
 	openssh-client \
 	postgresql-client \
-	&& rm -rf /var/cache/apk/*
+	&& rm -rf /var/cache/apk/* \
+	&& rm -f /usr/bin/darwin* /usr/bin/freebsd* /usr/bin/openbsd* /usr/bin/windows* \
+	&& rm -rf /usr/lib/go/bin/darwin* /usr/lib/go/bin/freebsd* /usr/lib/go/bin/openbsd* /usr/lib/go/bin/windows*
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:$PATH
