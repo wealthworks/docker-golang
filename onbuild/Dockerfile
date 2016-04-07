@@ -24,13 +24,18 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
 
 RUN go env \
-	&& mkdir -p /go/src/golang.org/x \
+	&& mkdir -p /go/src/golang.org/x /go/src/google.golang.org/grpc \
 	&& cd /go/src/golang.org/x \
 	&& git clone https://github.com/golang/crypto.git \
 	&& git clone https://github.com/golang/net.git \
+	&& git clone https://github.com/golang/oauth2.git \
+	&& cd /go/src/google.golang.org/ \
+	&& git clone git://github.com/grpc/grpc-go.git grpc \
 	&& cd /go/src \
 	&& go get github.com/gin-gonic/contrib/sentry \
+	&& go get github.com/golang/protobuf/proto \
 	&& go get github.com/golang/glog \
+	&& go get gopkg.in/vmihailenco/msgpack.v2 \
 	&& go get gopkg.in/go-pg/sharding.v4
 
 RUN mkdir -p /go/src/lcgc/platform \
