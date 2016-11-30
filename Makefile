@@ -1,6 +1,6 @@
-VERSION = 1.6
+VERSION = 1.7.3-r0
 
-.PHONY: onbuild
+.PHONY: build
 
-onbuild:
-	docker build -t lcgc/golang:$(VERSION)-onbuild onbuild/
+build:
+	docker build -t lcgc/golang:$(VERSION) .
