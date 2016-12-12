@@ -22,12 +22,12 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
 
 RUN go env \
-	&& mkdir -p $GOPATH/src/golang.org/x $GOPATH/src/google.golang.org/grpc \
+	&& mkdir -p $GOPATH/src/golang.org/x $GOPATH/src/google.golang.org \
 	&& cd $GOPATH/src/golang.org/x \
 	&& git clone git://github.com/golang/crypto.git \
 	&& git clone git://github.com/golang/net.git \
 	&& git clone git://github.com/golang/oauth2.git \
-	&& cd $GOPATH/src/google.golang.org/ \
+	&& cd $GOPATH/src/google.golang.org \
 	&& git clone git://github.com/google/go-genproto.git genproto \
 	&& git clone -qb v1.0.4 git://github.com/grpc/grpc-go.git grpc \
 	&& cd $GOPATH/src \
@@ -48,14 +48,13 @@ RUN mkdir -p $GOPATH/src/lcgc/platform \
 	&& go get github.com/statsd/client-interface \
 	&& go get github.com/statsd/client \
 	&& go get github.com/wealthworks/gracegrpc \
-	&& go get github.com/liut/osin-storage/storage \
-	&& rm -rf $GOPATH/pkg
-
-RUN mkdir -p $GOPATH/src/gopkg.in/pg.v4 $GOPATH/src/gopkg.in/go-pg/sharding.v4 \
+	&& mkdir -p $GOPATH/src/gopkg.in/go-pg \
 	&& cd $GOPATH/src/gopkg.in \
-	&& git clone git://github.com/liut/pg.git pg.v4 \
+	&& git clone -qb v4 git://github.com/liut/pg.git pg.v4 \
+	&& git clone -qb v5 git://github.com/liut/pg.git pg.v5 \
 	&& cd $GOPATH/src/gopkg.in/go-pg \
-	&& git clone git://github.com/liut/sharding.git sharding.v4 \
-	&& go get gopkg.in/go-pg/sharding.v4 \
+	&& git clone -qb v5 git://github.com/liut/sharding.git sharding.v5 \
+	&& go get gopkg.in/go-pg/sharding.v5 \
+	&& go get github.com/liut/osin-storage/storage \
 	&& go get github.com/mitchellh/mapstructure \
 	&& rm -rf $GOPATH/pkg

@@ -1,4 +1,4 @@
-VERSION = 1.7.3-r0
+VERSION = 1.7.3-r3
 
 .PHONY: build
 
