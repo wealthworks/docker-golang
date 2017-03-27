@@ -29,7 +29,7 @@ RUN go env \
 	&& git clone git://github.com/golang/oauth2.git \
 	&& cd $GOPATH/src/google.golang.org \
 	&& git clone git://github.com/google/go-genproto.git genproto \
-	&& git clone -qb v1.0.4 git://github.com/grpc/grpc-go.git grpc \
+	&& git clone -qb v1.0.5 git://github.com/grpc/grpc-go.git grpc \
 	&& cd $GOPATH/src \
 	&& go get github.com/gin-gonic/contrib/sentry \
 	&& go get github.com/golang/protobuf/proto \
@@ -42,12 +42,13 @@ RUN go env \
 	&& go get github.com/stretchr/testify \
 	&& rm -rf $GOPATH/pkg
 
+# for local dev
 RUN mkdir -p $GOPATH/src/lcgc/platform \
 	&& cd $GOPATH/src/lcgc/platform \
 	&& git clone git://github.com/wealthworks/envflagset.git \
 	&& go get github.com/statsd/client-interface \
 	&& go get github.com/statsd/client \
-	&& go get github.com/wealthworks/gracegrpc \
+	&& go get github.com/wealthworks/grace \
 	&& mkdir -p $GOPATH/src/gopkg.in/go-pg \
 	&& cd $GOPATH/src/gopkg.in \
 	&& git clone -qb v4 git://github.com/liut/pg.git pg.v4 \
@@ -57,4 +58,5 @@ RUN mkdir -p $GOPATH/src/lcgc/platform \
 	&& go get gopkg.in/go-pg/sharding.v5 \
 	&& go get github.com/liut/osin-storage/storage \
 	&& go get github.com/mitchellh/mapstructure \
+	&& go get github.com/pquerna/otp \
 	&& rm -rf $GOPATH/pkg
