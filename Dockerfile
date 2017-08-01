@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.6
 MAINTAINER Eagle Liut <liutao@licaigc.com>
 
 RUN apk --update add \
@@ -29,7 +29,7 @@ RUN go env \
 	&& git clone git://github.com/golang/oauth2.git \
 	&& cd $GOPATH/src/google.golang.org \
 	&& git clone git://github.com/google/go-genproto.git genproto \
-	&& git clone -qb v1.0.5 git://github.com/grpc/grpc-go.git grpc \
+	&& git clone -qb v1.3.0 git://github.com/grpc/grpc-go.git grpc \
 	&& cd $GOPATH/src \
 	&& go get github.com/gin-gonic/contrib/sentry \
 	&& go get github.com/golang/protobuf/proto \
